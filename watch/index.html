@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  
+      html, .main, body {
+        background-color:#000;
+        margin:0;
+      }
+      
+      .main {
+        padding:20px;
+        margin:0;
+        display:flex;
+      }
+      
+      .main > hd2 {
+        width:100%;
+        height:auto;
+      }
+      
+      .main > video {
+        width:100%;
+        height:100%;
+        border-radius:25px;
+      }
+      
+    
+      
+      * {
+        font-family: "Inter";
+      }
+      
+      
+     hd1,hd2,hd3,hd4,hd5,hd6 {
+       cursor:default;
+       color:#fff;
+font-family: "Instrument Sans";
+font-style: normal;
+       margin:0;
+       padding:0;
+      line-height:0;
+font-weight: 700;
+font-size: 30px;
+      }
+      
+      
+      
+      a {
+        cursor:pointer;
+      }
+      
+      a:hover {
+        text-decoration:underline;
+        cursor:pointer;
+      }
+     
+      
+      
+    </style>
+    <title>Unhinged Barney</title>
+    <link rel="icon" href="https://i.ibb.co/fkZNmyB/icon.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/fkZNmyB/icon.png">
+  </head>
+  <body>
+    <div class="main">
+      <hd2>Latest Episode <a style="color:blue; font-size:15px;font-weight:normal;" href="/episodes">find a specific one</a></hd2>
+      <video></video>
+    </div>
+     <script>
+              const urlParams = new URLSearchParams(window.location.search);
+const episodeID = urlParams.get('episodeID');
+             (async () => {
+               
+         const response = await fetch('https://api.github.com/repos/unhingedbarney/unhingedbarney.github.io/contents/episodes');
+        const data = await response.json();
+       
+       if (episodeID == null) {
+         document.querySelector('video').src == "https://unhingedbarney.github.io/episodes/1-1.mp4"
+         console.log('yes')
+       }
+       
+     
+        
+        for (let file of data) {
+          if (episodeID == file.name.replace('.mp4', '')) {
+            document.querySelector('video').src == file.path
+          }
+         }
+             });
+    </script>
+  </body>
+</html>
+  
